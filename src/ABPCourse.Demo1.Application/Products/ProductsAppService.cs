@@ -28,6 +28,13 @@ namespace ABPCourse.Demo1.Products
         #region IProductsAppService
         public async Task<ProductDto> CreateProductAsync(CreateUpdateProductDto input)
         {
+            //VALIDATION
+            var valid = new CreateUpdateProductValidator().Validate(input);
+            if(!valid.IsValid) 
+            {
+                var exception = GetValidationException(valid);
+                throw exception;
+            }
             var product = ObjectMapper.Map<CreateUpdateProductDto, Product>(input);
             var inserted = await productsRepository.InsertAsync(product, autoSave: true);
             return ObjectMapper.Map<Product, ProductDto>(inserted);
@@ -89,6 +96,14 @@ namespace ABPCourse.Demo1.Products
 
         public async Task<ProductDto> UpdateProductAsync(CreateUpdateProductDto input)
         {
+            //VALIDATION
+            var valid = new CreateUpdateProductValidator().Validate(input);
+            if (!valid.IsValid)
+            {
+                var exception = GetValidationException(valid);
+                throw exception;
+            }
+
             var existing = await productsRepository.GetAsync(input.Id);
             if (existing == null)
             {
