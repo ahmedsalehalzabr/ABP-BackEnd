@@ -80,7 +80,9 @@ public class Demo1DbContext :
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
 
-        builder.ApplyConfiguration(new ProductConfiguration());
-        builder.ApplyConfiguration(new CategoryConfiguration());
+        //builder.ApplyConfiguration(new ProductConfiguration());
+        //builder.ApplyConfiguration(new CategoryConfiguration());
+
+        builder.ApplyConfigurationsFromAssembly(typeof(Demo1DbContext).Assembly);
     }
 }

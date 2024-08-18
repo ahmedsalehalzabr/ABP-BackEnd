@@ -15,28 +15,33 @@ namespace ABPCourse.Demo1.Data.Categories
         {
             this.categoryRepository = categoryRepository;
         }
-        public Task SeedAsync(DataSeedContext context)
+        public async Task SeedAsync(DataSeedContext context) 
         {
-            var categories = new List<Category>
+            if (!await categoryRepository.AnyAsync())
+            {
+                var categories = new List<Category>
             {
                 new Category(id:1,
-                nameAr:"اطعمة ومشروبات",
-                nameEn:"Food & Drinks",
-                descriptionAr:"جميع انواع الاطعمة والماكولات",
-                descriptionEn:"All food and drink categories"),
-                  new Category(id:2,
-                nameAr:"مواد منظفة",
-                nameEn:"Detergents",
-                descriptionAr:"المنظفات بانواعها",
-                descriptionEn:"All matrials used for ckeaniing"),
-                    new Category(id:4,
-                nameAr:"بلاستيك",
-                nameEn:"Plastic",
-                descriptionAr:"البلاستيك القابل للتدوير والغير القابل للتدوير",
-                descriptionEn:"All reusable and non-reusable plastic materials"),
+                     nameAr:"اطعمة ومشروبات",
+                     nameEn:"Food & Drinks",
+                     descriptionAr:"جميع انواع الاطعمة والماكولات",
+                     descriptionEn:"All food and drink categories"),
+                new Category(id:2,
+                     nameAr:"مواد منظفة",
+                     nameEn:"Detergents",
+                     descriptionAr:"المنظفات بانواعها",
+                     descriptionEn:"All matrials used for ckeaniing"),
+                new Category(id:4,
+                     nameAr:"بلاستيك",
+                     nameEn:"Plastic",
+                     descriptionAr:"البلاستيك القابل للتدوير والغير القابل للتدوير",
+                     descriptionEn:"All reusable and non-reusable plastic materials"),
 
             };
-            return this.categoryRepository.InsertManyAsync(categories);
+
+                await this.categoryRepository.InsertManyAsync(categories);
+            }
+          
         }
     }
 }
