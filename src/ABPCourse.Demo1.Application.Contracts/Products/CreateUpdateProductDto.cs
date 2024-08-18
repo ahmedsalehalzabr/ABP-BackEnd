@@ -1,9 +1,8 @@
-﻿using ABPCourse.Demo1.Categories;
-using Volo.Abp.Domain.Entities.Auditing;
+﻿using Volo.Abp.Application.Dtos;
 
 namespace ABPCourse.Demo1.Products
 {
-    public class Product : FullAuditedEntity<int>
+    public class CreateUpdateProductDto : EntityDto<int>
     {
         public string NameAr { get; set; }
         public string NameEn { get; set; }
@@ -11,6 +10,5 @@ namespace ABPCourse.Demo1.Products
         public string DescriptionEn { get; set; }
 
         public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
     }
 }
