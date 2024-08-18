@@ -2,7 +2,7 @@
 
 public static class Demo1Consts
 {
-    public const string DbTablePrefix = "App";
+    public const int GeneralTextMaxlength = 300;
 
-    public const string DbSchema = null;
+    public const int DescriptionTextMaxLength = 1000;
 }

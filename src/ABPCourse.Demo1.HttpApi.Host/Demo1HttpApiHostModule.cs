@@ -155,6 +155,7 @@ public class Demo1HttpApiHostModule : AbpModule
             });
     }
 
+
     private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
     {
         context.Services.AddCors(options =>
