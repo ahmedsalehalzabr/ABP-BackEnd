@@ -30,7 +30,7 @@ namespace ABPCourse.Demo1.Products
         {
             //VALIDATION
             var valid = new CreateUpdateProductValidator().Validate(input);
-            if(!valid.IsValid) 
+            if (!valid.IsValid)
             {
                 var exception = GetValidationException(valid);
                 throw exception;
