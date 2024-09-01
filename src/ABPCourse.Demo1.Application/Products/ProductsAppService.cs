@@ -65,7 +65,12 @@ namespace ABPCourse.Demo1.Products
                                 .AsQueryable()
                                 .WhereIf(!input.Filter.IsNullOrWhiteSpace(),
                                   product => product.NameAr.Contains(input.Filter) ||
-                                             product.NameEn.Contains(input.Filter))
+                                             product.NameEn.Contains(input.Filter)
+                                             )
+                                .WhereIf(
+                                    input.CategoryId.HasValue,
+                                    product => product.CategoryId == input.CategoryId
+                                 )
                                 .Skip(input.SkipCount)
                                 .Take(input.MaxResultCount)
                                 .OrderBy(input.Sorting)
