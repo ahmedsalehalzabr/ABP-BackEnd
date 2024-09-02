@@ -8,6 +8,8 @@ using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using ABPCourse.Demo1.Permissions;
 
 namespace ABPCourse.Demo1.Products
 {
@@ -26,6 +28,7 @@ namespace ABPCourse.Demo1.Products
         #endregion
 
         #region IProductsAppService
+        [Authorize(Demo1Permissions.CreateEditProductPermission)]
         public async Task<ProductDto> CreateProductAsync(CreateUpdateProductDto input)
         {
             //VALIDATION
@@ -40,7 +43,7 @@ namespace ABPCourse.Demo1.Products
             return ObjectMapper.Map<Product, ProductDto>(inserted);
         }
 
-
+        [Authorize(Demo1Permissions.DeleteProductPermission)]
         public async Task<bool> DeleteProductAsync(int id)
         {
             var existingProduct = await productsRepository.GetAsync(id);
@@ -52,6 +55,7 @@ namespace ABPCourse.Demo1.Products
             return true;
         }
 
+        [Authorize(Demo1Permissions.ListProductPermission)]
         public async Task<PagedResultDto<ProductDto>> GetListAsync(GetProductListDto input)
         {
            if(input.Sorting.IsNullOrWhiteSpace())
@@ -85,6 +89,7 @@ namespace ABPCourse.Demo1.Products
                 
         }
 
+        [Authorize(Demo1Permissions.GetProductPermission)]
         public async Task<ProductDto> GetProductAsync(int id)
         {
             var product = await productsRepository
@@ -99,6 +104,7 @@ namespace ABPCourse.Demo1.Products
             return ObjectMapper.Map<Product, ProductDto>(product);
         }
 
+        [Authorize(Demo1Permissions.CreateEditProductPermission)]
         public async Task<ProductDto> UpdateProductAsync(CreateUpdateProductDto input)
         {
             //VALIDATION
