@@ -30,17 +30,20 @@ namespace ABPCourse.Demo1.Lookups
         #region methods
         public async Task<List<CategoryDto>> GetCategories()
         {
+            //after redis
             //return await GetAllCategoriesFromDbAsync();
             //return await categoryCache.GetOrAddAsync(
             //    $"ALL_CATEGORIES", //Cache key
             //    async () => await GetAllCategoriesFromDbAsync(),
             //    () => new DistributedCacheEntryOptions
             //    {
-                       // تجلس البيانات في الكاشنق مده ساعه فقط 
+            // تجلس البيانات في الكاشنق مده ساعه فقط 
             //        AbsoluteExpiration = DateTimeOffset.Now.AddHours(1)
             //    }
             //);
 
+            // شغلناها في المديول DistributedCacheEntryOptions
+            // with redis
             //Using Redis
             return await categoryCache.GetOrAddAsync(
                 $"ALL_CATEGORIES", //Cache key
