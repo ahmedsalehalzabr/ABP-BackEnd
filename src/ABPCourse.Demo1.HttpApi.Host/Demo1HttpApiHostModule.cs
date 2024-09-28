@@ -63,7 +63,7 @@ public class Demo1HttpApiHostModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
         var hostingEnvironment = context.Services.GetHostingEnvironment();
-     //   ConfigureAuditing(context);
+        ConfigureAuditing(context);
         ConfigureAuthentication(context);
         ConfigureBundles();
         ConfigureUrls(configuration);
@@ -73,19 +73,21 @@ public class Demo1HttpApiHostModule : AbpModule
         ConfigureSwaggerServices(context, configuration);
     }
 
-    private void ConfigureAuditing(ServiceConfigurationContext context)
-    {
-        Configure<AbpAuditingOptions>(options =>
-        {
-            options.IsEnabled = true;
-        });
-    }
+ 
     private void ConfigureAuthentication(ServiceConfigurationContext context)
     {
         context.Services.ForwardIdentityAuthenticationForBearer(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
         context.Services.Configure<AbpClaimsPrincipalFactoryOptions>(options =>
         {
             options.IsDynamicClaimsEnabled = true;
+        });
+    }
+    //add this
+    private void ConfigureAuditing(ServiceConfigurationContext context)
+    {
+        Configure<AbpAuditingOptions>(options =>
+        {
+            options.IsEnabled = true;
         });
     }
 
