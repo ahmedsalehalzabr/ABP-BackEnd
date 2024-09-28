@@ -29,6 +29,7 @@ using Volo.Abp.Security.Claims;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Auditing;
 
 namespace ABPCourse.Demo1;
 
@@ -62,7 +63,7 @@ public class Demo1HttpApiHostModule : AbpModule
     {
         var configuration = context.Services.GetConfiguration();
         var hostingEnvironment = context.Services.GetHostingEnvironment();
-
+     //   ConfigureAuditing(context);
         ConfigureAuthentication(context);
         ConfigureBundles();
         ConfigureUrls(configuration);
@@ -72,6 +73,13 @@ public class Demo1HttpApiHostModule : AbpModule
         ConfigureSwaggerServices(context, configuration);
     }
 
+    private void ConfigureAuditing(ServiceConfigurationContext context)
+    {
+        Configure<AbpAuditingOptions>(options =>
+        {
+            options.IsEnabled = true;
+        });
+    }
     private void ConfigureAuthentication(ServiceConfigurationContext context)
     {
         context.Services.ForwardIdentityAuthenticationForBearer(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);

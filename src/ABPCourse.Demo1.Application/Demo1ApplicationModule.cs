@@ -1,8 +1,8 @@
 ﻿using System;
 using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
-using Volo.Abp.Caching;
-using Volo.Abp.Caching.StackExchangeRedis;
+//using Volo.Abp.Caching;
+//using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.FluentValidation;
 
@@ -22,9 +22,9 @@ namespace ABPCourse.Demo1;
     typeof(AbpPermissionManagementApplicationModule),
     typeof(AbpTenantManagementApplicationModule),
     typeof(AbpFeatureManagementApplicationModule),
-    typeof(AbpSettingManagementApplicationModule),
-    typeof(AbpFluentValidationModule),
-    typeof(AbpCachingStackExchangeRedisModule)
+    typeof(AbpSettingManagementApplicationModule)
+    //typeof(AbpFluentValidationModule),
+    //typeof(AbpCachingStackExchangeRedisModule)
     )]
 public class Demo1ApplicationModule : AbpModule
 {
@@ -34,10 +34,10 @@ public class Demo1ApplicationModule : AbpModule
         {
             options.AddMaps<Demo1ApplicationModule>();
         });
-        Configure<AbpDistributedCacheOptions>(options =>
-        {
-            options.KeyPrefix = "Demo1_";
-            options.GlobalCacheEntryOptions.AbsoluteExpiration = DateTimeOffset.Now.AddHours(1);
-        });
+        //Configure<AbpDistributedCacheOptions>(options =>
+        //{
+        //    options.KeyPrefix = "Demo1_";
+        //    options.GlobalCacheEntryOptions.AbsoluteExpiration = DateTimeOffset.Now.AddHours(1);
+        //});
     }
 }

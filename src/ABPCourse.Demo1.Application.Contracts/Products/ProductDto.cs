@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp.Application.Dtos;
+﻿using Volo.Abp.Application.Dtos;
 
 namespace ABPCourse.Demo1.Products
 {
@@ -15,7 +10,6 @@ namespace ABPCourse.Demo1.Products
         public string DescriptionEn { get; set; }
 
         public int CategoryId { get; set; }
-        // public Category Category { get; set; }
 
         public string CategoryNameAr { get; set; }
         public string CategoryNameEn { get; set; }
