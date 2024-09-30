@@ -30,6 +30,7 @@ using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
 using Volo.Abp.Auditing;
+using Volo.Abp.OpenIddict;
 
 namespace ABPCourse.Demo1;
 
@@ -57,6 +58,15 @@ public class Demo1HttpApiHostModule : AbpModule
                 options.UseAspNetCore();
             });
         });
+        //PreConfigure<AbpOpenIddictAspNetCoreOptions>(options =>
+        //{
+        //    options.AddDevelopmentEncryptionAndSigningCertificate = false;
+        //});
+
+        //PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
+        //{
+        //    serverBuilder.AddProductionEncryptionAndSigningCertificate("openiddict.pfx", "00000000-0000-0000-0000-000000000000");
+        //});
     }
 
     public override void ConfigureServices(ServiceConfigurationContext context)
