@@ -88,7 +88,16 @@ public class Demo1HttpApiHostModule : AbpModule
         Configure<AbpAuditingOptions>(options =>
         {
             options.IsEnabled = true;
+            //Ì÷Ì› «·ﬂ· 
+            //options.EntityHistorySelectors.AddAllEntities();
         });
+
+        //  Õœœ «Ì‘ Ì Ã‰»
+        //Configure<AbpAuditingOptions>(options =>
+        //{
+        //    options.IgnoredUrls.Add("Account");
+        //    options.IgnoredUrls.Add("Connect");
+        //})
     }
 
     private void ConfigureBundles()
@@ -201,6 +210,9 @@ public class Demo1HttpApiHostModule : AbpModule
         if (!env.IsDevelopment())
         {
             app.UseErrorPage();
+            //  ÌﬂÊ‰ ﬂ· «· ÿ»Ìﬁ „Õ„Ì »«·”— ›ﬂÌ  ‰÷Ì› Â–Â «·„Ìœ· ÊÌ— ⁄‰œ„«  ﬂÊ‰ «·«‰›«Ì— „‰  „‘ œ›·Ê»—
+            app.UseHsts();
+            app.UseHttpsRedirection();
         }
 
         app.UseCorrelationId();
